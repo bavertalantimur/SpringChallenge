@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AdressManager implements IAdressService {
+public class  AdressManager implements IAdressService {
     @Autowired
     private IAdressDal adressDal;
     @Override

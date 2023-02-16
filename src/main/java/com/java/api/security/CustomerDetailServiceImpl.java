@@ -19,8 +19,8 @@ public class CustomerDetailServiceImpl implements UserDetailsService {
     }
     @Override
     public UserDetails loadUserByUsername(String mailadress) throws UsernameNotFoundException {
-        Customer user=customerRepository.findByUserName(mailadress);
-        return JwtUserDetails.create(user);
+       // Customer user=customerRepository.findByE(mailadress);
+        return null;//JwtUserDetails.create(user);
     }
     public UserDetails loadUserById(Long id){
         Customer customer=customerRepository.findById(id).get();

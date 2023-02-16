@@ -18,6 +18,7 @@ public class JwtTokenProvider {
     public String generateJwtToken(Authentication auth){
         JwtUserDetails userDetails=(JwtUserDetails) auth.getPrincipal();
         Date expireDate=new Date(new Date().getTime()+EXPRIES_IN);
+
         return Jwts.builder().setSubject(Long.toString(userDetails.getId())).setIssuedAt(new Date()).setExpiration(expireDate).signWith(SignatureAlgorithm.ES512,APP_SECRET).compact();
     }
 

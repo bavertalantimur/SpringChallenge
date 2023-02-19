@@ -1,12 +1,16 @@
 package com.java.api.business;
 
+import com.java.api.dto.AdressDto;
+import com.java.api.dto.CustomerDto;
 import com.java.api.entities.Adress;
 
+import java.security.InvalidKeyException;
 import java.util.List;
 
 public interface IAdressService {
-    void addAddress(Adress adress);
-    List<Adress> getAll();
-    void update(Adress adress);
-    void delete(Long id);
+    void create(AdressDto adressDto);
+    List<AdressDto> getAll();
+    void update(AdressDto adressDto,Long id);
+    void delete(Long id) throws InvalidKeyException;
+    AdressDto getAdressById(Long id);
 }

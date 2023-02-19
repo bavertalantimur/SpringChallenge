@@ -6,7 +6,9 @@ import com.java.api.repository.AdressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.security.InvalidKeyException;
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -19,7 +21,7 @@ public class AdressDal implements IAdressDal {
 
 
     @Override
-    public void addAddress(Adress adress) {
+    public void create(Adress adress) {
         adressRepository.save(adress);
     }
 
@@ -29,12 +31,28 @@ public class AdressDal implements IAdressDal {
     }
 
     @Override
-    public void update(Adress adress) {
-        adressRepository.save(adress);
+    public Adress update(Adress adress) {
+        Adress adress1=adressRepository.findById(adress.getId()).orElse(null);
+
+            if (!adress.getAdressname().isEmpty())
+                adress1.setAdressname(adress.getAdressname()); ;//f:alihan
+            if (!adress.getCity().isEmpty()) //
+                adress1.setCity(adress.getCity());
+
+        return adressRepository.save(adress1);
     }
 
     @Override
-    public void delete(Long id) {
-        adressRepository.deleteById(id);
+    public void delete(Long id)throws InvalidKeyException {
+        try{
+            adressRepository.deleteById(id);
+        }catch (Exception e){
+            throw new InvalidKeyException("Something went wrong");
+        }
+    }
+
+    @Override
+    public Adress getAdressById(Long id) {
+        return adressRepository.findById(id).orElse(null);
     }
 }

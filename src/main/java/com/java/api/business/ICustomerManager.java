@@ -1,13 +1,16 @@
 package com.java.api.business;
 
+import com.java.api.dto.CustomerDto;
 import com.java.api.entities.Customer;
 
 import java.util.List;
 
 public interface ICustomerManager {
-    Customer addCustomer(Customer customer);
-    List<Customer> getAllCustomer();
-    void update(Customer customer);
+    void create(CustomerDto customerDto);
+    List<CustomerDto> getAllCustomer();
+    void update(CustomerDto customerDto,Long id);
 
     String deleteCustomer(Long id);
+
+    CustomerDto getCustomerById(Long id);
 }

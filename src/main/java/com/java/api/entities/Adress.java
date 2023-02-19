@@ -3,6 +3,10 @@ package com.java.api.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="adress")
@@ -21,13 +25,19 @@ public class Adress {
     @Column(name = "city")
     private String city;
 
-
     @Column(name = "district")
     private String district;
 
     @ManyToOne
     @JoinColumn(name = "customer")
     private Customer customer;
+
+
+    @Column(updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     public Adress(Long id, String adressname, String city, String district) {
         this.id = id;
@@ -38,4 +48,5 @@ public class Adress {
     public Adress(){
 
     }
+
 }
